@@ -5,6 +5,10 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const app = express();
 
+// Include routing for blog posts
+const postRoutes = require('./routes/posts');
+app.use('/posts', postRoutes);
+
 // Connect to MongoDB
 
 require('dotenv').config(); // Import environment variables
