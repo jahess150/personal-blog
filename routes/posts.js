@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../models/post");
+const { isAdmin } = require('../middleware/auth');
 
 // INDEX - Show all blog posts
-router.get("/", async (req, res) => {
+router.get("/", isAdmin, async (req, res) => {
     try {
         const posts = await Post.find({});
         res.render("index", { posts });
@@ -14,12 +15,12 @@ router.get("/", async (req, res) => {
 });
 
 // NEW - Show form to create a new post
-router.get("/new", (req, res) => {
+router.get("/new", isAdmin, (req, res) => {
     res.render("new");
 });
 
 // CREATE - Add a new post to MongoDB database
-router.post("/", async (req, res) => {
+router.post("/", isAdmin, async (req, res) => {
     const newPost = {
         title: req.body.title,
         content: req.body.content,
@@ -35,7 +36,7 @@ router.post("/", async (req, res) => {
 });
 
 // SHOW - Show details of a single post
-router.get("/:id", async (req, res) => {
+router.get("/:id", isAdmin, async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
         res.render("show", { post });
@@ -46,7 +47,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // EDIT - Show form to edit a post
-router.get("/:id/edit", async (req, res) => {
+router.get("/:id/edit", isAdmin, async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
         res.render("edit", { post });
@@ -57,7 +58,7 @@ router.get("/:id/edit", async (req, res) => {
 });
 
 // UPDATE - Update a specific post
-router.put("/:id", async (req, res) => {
+router.put("/:id", isAdmin, async (req, res) => {
     const updatedPost = {
         title: req.body.title,
         content: req.body.content,
@@ -73,7 +74,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // DELETE - Delete a specific post
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", isAdmin, async (req, res) => {
     try {
         await Post.findByIdAndRemove(req.params.id);
         res.redirect("/posts");
