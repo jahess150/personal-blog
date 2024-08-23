@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../models/post");
-const { isAdmin } = require('../middleware/auth');
+const { isAdmin } = require("../middleware/auth");
 
 // INDEX - Show all blog posts
 router.get("/", isAdmin, async (req, res) => {
