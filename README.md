@@ -39,28 +39,31 @@ personal-blog/
 ├── index.js              # Main application file
 ├── package.json          # Project dependencies and scripts
 └── README.md             # Project documentation
+```
 
 ## Usage
 
-- **Admin Login:** Navigate to `/admin/login` to access the admin panel. The login credentials are hardcoded for now.
-- **Creating a Post:** Once logged in, you can create a new post from the admin dashboard.
-- **Editing/Deleting a Post:** Click on any post in the list and access the edit or delete options.
+-   **Admin Login:** Navigate to `/admin/login` to access the admin panel. The login credentials are hardcoded for now.
+-   **Creating a Post:** Once logged in, you can create a new post from the admin dashboard.
+-   **Editing/Deleting a Post:** Click on any post in the list and access the edit or delete options.
 
 ## Technologies Used
-- **Node.js & Express.js:** Backend framework and server.
-- **MongoDB & Mongoose:** Database and ORM.
-- **EJS:** Templating engine for rendering HTML.
-- **CSS:** Custom styles for the frontend.
+
+-   **Node.js & Express.js:** Backend framework and server.
+-   **MongoDB & Mongoose:** Database and ORM.
+-   **EJS:** Templating engine for rendering HTML.
+-   **CSS:** Custom styles for the frontend.
 
 ## Future Enhancements
-- Implement user authentication with a database.
-- Add a rich text editor for creating and editing posts.
-- Implement pagination for post listings.
+
+-   Implement user authentication with a database.
+-   Add a rich text editor for creating and editing posts.
+-   Implement pagination for post listings.
 
 ## License
+
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
 Happy coding! Feel free to contribute or suggest improvements.
-```
