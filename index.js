@@ -28,6 +28,9 @@ app.use(
 // Set up flash messages
 app.use(flash());
 
+// Set up HTTP overrides
+app.use(methodOverride("_method"));
+
 // Make session data and flash messages available in all views
 app.use((req, res, next) => {
     res.locals.currentUser = req.session.userId;

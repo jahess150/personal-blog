@@ -14,12 +14,12 @@ router.get("/", isAdmin, async (req, res) => {
     }
 });
 
-// NEW - Show form to create a new post
+// NEW - Show form to create a new post, admin protected
 router.get("/new", isAdmin, (req, res) => {
     res.render("new");
 });
 
-// CREATE - Add a new post to MongoDB database
+// CREATE - Add a new post to MongoDB database, admin protected
 router.post("/", isAdmin, async (req, res) => {
     const newPost = {
         title: req.body.title,
@@ -36,7 +36,7 @@ router.post("/", isAdmin, async (req, res) => {
 });
 
 // SHOW - Show details of a single post
-router.get("/:id", isAdmin, async (req, res) => {
+router.get("/:id", async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
         res.render("show", { post });
@@ -46,7 +46,7 @@ router.get("/:id", isAdmin, async (req, res) => {
     }
 });
 
-// EDIT - Show form to edit a post
+// EDIT - Show form to edit a post, admin protected
 router.get("/:id/edit", isAdmin, async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
@@ -57,7 +57,7 @@ router.get("/:id/edit", isAdmin, async (req, res) => {
     }
 });
 
-// UPDATE - Update a specific post
+// UPDATE - Update a specific post, admin protected
 router.put("/:id", isAdmin, async (req, res) => {
     const updatedPost = {
         title: req.body.title,
@@ -73,10 +73,10 @@ router.put("/:id", isAdmin, async (req, res) => {
     }
 });
 
-// DELETE - Delete a specific post
+// DELETE - Delete a specific post, admin protected
 router.delete("/:id", isAdmin, async (req, res) => {
     try {
-        await Post.findByIdAndRemove(req.params.id);
+        await Post.findByIdAndDelete(req.params.id);
         res.redirect("/posts");
     } catch (err) {
         console.log(err);
